@@ -1,0 +1,27 @@
+.pic{
+    height: 200px;
+    width:200px;
+}
+
+.card{
+    background-color: lightgreen;
+    /* width:fit-content; */
+    border: 1px solid black;
+    padding:2%;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    box-shadow: 2px 2px 2px grey;
+    margin: 5%;
+    
+}
+
+.card:hover{
+    transform: scale(1.03);
+    box-shadow: 3px 3px 2px grey;
+}
+
+@media screen and (max-width:500px){
+    .card{
+        margin:9px;
+    }
+}

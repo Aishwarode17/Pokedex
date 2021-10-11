@@ -1,25 +1,62 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import React from 'react'
+import CardList from './components/CardList';
+import Refresh from './components/Refresh';
+import Footer from './components/Footer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+
+  constructor(){
+    super();
+    this.state = {
+      pokemon:[],
+      searchvalue:"",
+  }
+
+  
 }
+  
+
+  componentDidMount(){
+    fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${11}`).then(response =>{ return response.json()})
+    .then(poke => { 
+      this.setState({pokemon:poke})} );
+  }
+
+  clicked = (event)=>{
+    let url = this.state.pokemon.next;
+    fetch(url).then(response =>{ return response.json()})
+    .then(poke => { 
+      this.setState({pokemon:poke}) } );
+  }
+  
+ 
+
+
+  render(){
+    
+    if(this.state.pokemon.length===0){
+      return (
+        <h1>loading</h1>
+      )
+    }
+    else{
+    return(
+    <div  >
+        <h1 style={{textAlign:'center'}}>Pokedex</h1>
+        
+        <Refresh clicked={this.clicked}  ></Refresh>
+
+        <CardList pokemon = {this.state.pokemon}></CardList>  
+        <Footer></Footer>
+    </div>
+    );
+    }
+
+
+  }
+}
+
 
 export default App;

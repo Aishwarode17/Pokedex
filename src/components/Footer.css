@@ -1,0 +1,15 @@
+.footer{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* border: 1px solid black; */
+    font-style: italic;
+    
+}
+a{
+    text-decoration: none;
+    color:rgb(165, 38, 38);
+    cursor: pointer;
+}
